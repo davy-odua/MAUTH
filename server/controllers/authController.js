@@ -184,7 +184,7 @@ export const verifyEmail = async (req, res) => {
 }
 
 
-//Now lets create a function to check if the user is authenticated
+//Now  create a function to check if the user is authenticated
 export const isAuthenticated = async (req, res) => {
     try {
         
@@ -193,4 +193,84 @@ export const isAuthenticated = async (req, res) => {
     } catch (error) {
         return res.json({success: false, message: error.message});        
     }
+}
+
+//Now  create a function to send the password reset otp
+export const sendResetOtp = async (req, res) => {
+    const {email} = req.body;
+    
+    if(!email){
+        return res.json({success: false, message: "Email is required"})
+    }
+
+    try {
+        
+        const user = await userModel.findOne({email});
+
+        if(!user){
+            return res.json({success: false, message: "User Not Found"});  
+        }
+        //Suppose the user is found
+        //Create a new OTP and save it in the database and then send it to the user's email 
+        const otp = String(Math.floor(100000 * Math.random() + 900000));
+        user.resetOtp = otp;
+        user.resetOtpExpireAt = Date.now() + 15 * 60 * 1000;
+
+        await user.save();
+
+        //Now send the otp to the user's email
+        const mailOptions = {
+            from: process.env.SENDER_EMAIL,
+            to: user.email,
+            subject: "Password Reset Otp",
+            text: `Your password reset otp is ${otp}. Use this to reset 
+                your password.`
+        }
+
+        await transporter.sendMail(mailOptions);
+        
+        return res.json({success: true, message: "Otp sent to your Email"});
+
+    } catch (error) {
+        return res.json({success: false, message: error.message});  
+    }
+}
+
+//Now create a function to reset the password
+export const resetPassword = async (req, res) => {
+    const {email, otp, newPassword} = req.body;
+
+    if(!email || !otp || !newPassword){
+        return res.json({success: false, message: "Email, Otp and new password are required"});
+    }
+
+    try {
+        const user = await userModel.findOne({email});
+        //If user does not exist
+        if(!user){
+            return res.json({success: false, message: "User Not Found"}); 
+        }
+        //If user exists, check the otp
+        if(user.resetOtp === '' || user.resetOtp !== otp){
+            return res.json({success: false, message: "Invalid OTP"}); 
+        }
+        //If otp matches the check the expiry of the otp
+        if(user.resetOtpExpireAt < Date.now()){
+            return res.json({success: false, message: "OTP Expired"}); 
+        }
+        //If the user and the otp are correct then hash the new password and save it in the database
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        user.password = hashedPassword;
+        user.resetOtp = '';
+        user.resetOtpExpireAt = 0;
+
+        await user.save();
+
+        return res.json({success: true, message: "Password has been reset successfully"});
+
+    } catch (error) {
+        return res.json({success: false, message: error.message});         
+    }
+
 }
