@@ -22,5 +22,4 @@ export const getUserData = async (req, res) => {
     } catch (error) {
         return res.json({success: false, message: error.message});   
     }
-
 }
