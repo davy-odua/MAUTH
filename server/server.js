@@ -27,7 +27,6 @@ app.get('/', (req, res) => {res.send("API Working")});
 app.use('/api/auth', router);
 app.use('/api/user', userRouter);
 
-
 app.listen(port, () => console.log(`Start Server on port ${port}`));
 
 //url - http://localhost/4000/api/auth/...
