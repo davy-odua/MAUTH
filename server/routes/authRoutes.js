@@ -15,4 +15,5 @@ router.post('/reset-password', resetPassword);
 
 //http://localhost/4000/api/auth/register
 
+
 export default router;
