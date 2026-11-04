@@ -149,7 +149,7 @@ export const sendVerifyOtp = async (req, res) => {
 //Now create a function for the user to enter the otp sent on their email
 export const verifyEmail = async (req, res) => {
     const userId = req.userId;
-    const {otp} = req.body;
+    const {otp} = req.body || {};
 
     if(!userId || !otp){
         return res.json({success: false, message: "Missing Details"});
