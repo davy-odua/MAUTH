@@ -13,8 +13,6 @@ router.post('/is-auth', userAuth, isAuthenticated);
 router.post('/send-reset-otp', sendResetOtp);
 router.post('/reset-password', resetPassword);
 
-
-
 //http://localhost/4000/api/auth/register
 
 export default router;
