@@ -182,7 +182,7 @@ export const verifyEmail = async (req, res) => {
     }
 }
 
-//Now  create a function to check if the user is authenticated
+//Then  create a function to check if the user is authenticated
 export const isAuthenticated = async (req, res) => {
     try {
         
