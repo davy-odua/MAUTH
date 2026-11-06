@@ -58,7 +58,7 @@ export const register = async (req, res) => {
 
 }
 
-// Lets create the function for the login controller
+// Then Lets create the function for the login controller
 export const login = async (req, res) => {
     const {email, password} = req.body
     //If the user does not give all details
