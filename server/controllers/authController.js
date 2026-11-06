@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import transporter from "../config/nodemailer.js";
 
-//lets create the function for the register controller
+//Now lets create the function for the register controller
 export const register = async (req, res) => {
     const {name, email, password} = req.body;
 
