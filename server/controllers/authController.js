@@ -193,7 +193,6 @@ export const isAuthenticated = async (req, res) => {
     }
 };
 
-
 //Then  create a function to send the password reset otp
 export const sendResetOtp = async (req, res) => {
     const {email} = req.body;
@@ -233,7 +232,7 @@ export const sendResetOtp = async (req, res) => {
     } catch (error) {
         return res.json({success: false, message: error.message});  
     }
-}
+};
 
 //Now create a function to reset the password
 export const resetPassword = async (req, res) => {
