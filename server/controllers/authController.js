@@ -182,7 +182,6 @@ export const verifyEmail = async (req, res) => {
     }
 };
 
-
 //Now  create a function to check if the user is authenticated
 export const isAuthenticated = async (req, res) => {
     try {
@@ -192,7 +191,7 @@ export const isAuthenticated = async (req, res) => {
     } catch (error) {
         return res.json({success: false, message: error.message});        
     }
-}
+};
 
 
 //Then  create a function to send the password reset otp
