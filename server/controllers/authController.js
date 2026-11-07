@@ -92,7 +92,7 @@ export const login = async (req, res) => {
     } catch (error) {
         return res.json({success: false, message: error.message});
     }
-}
+};
 
 export const logout = async (req, res) => {
     try {
