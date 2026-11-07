@@ -56,7 +56,7 @@ export const register = async (req, res) => {
         return res.json({success: false, message: error.message});
     }
 
-}
+};
 
 // Then Lets create the function for the login controller
 export const login = async (req, res) => {
