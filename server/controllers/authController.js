@@ -180,7 +180,8 @@ export const verifyEmail = async (req, res) => {
     } catch (error) {
         return res.json({success: false, message: error.message});        
     }
-}
+};
+
 
 //Now  create a function to check if the user is authenticated
 export const isAuthenticated = async (req, res) => {
