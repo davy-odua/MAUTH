@@ -110,8 +110,6 @@ export const logout = async (req, res) => {
     }
 };
 
-
-
 //Now send an email verification otp
 export const sendVerifyOtp = async (req, res) => {
     try {    
@@ -145,7 +143,7 @@ export const sendVerifyOtp = async (req, res) => {
     } catch (error) {
         return res.json({success: false, message: error.message});
     }
-}
+};
 
 //Now create a function for the user to enter the otp sent on their email
 export const verifyEmail = async (req, res) => {
