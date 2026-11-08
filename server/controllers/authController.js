@@ -272,3 +272,5 @@ export const resetPassword = async (req, res) => {
     }
 
 };
+
+//The end of the controllers
