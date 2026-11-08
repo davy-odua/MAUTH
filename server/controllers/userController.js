@@ -24,4 +24,4 @@ export const getUserData = async (req, res) => {
     }
 }
 
-//The end of the user Controller
+//The end 
