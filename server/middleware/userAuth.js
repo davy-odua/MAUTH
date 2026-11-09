@@ -10,7 +10,7 @@ const userAuth = async (req, res, next) => {
     }
     //If token is available
     try {
-        // Now we decode the token
+        // Then we decode the token
         const tokenDecode = jwt.verify(token, process.env.JWT_SECRET); 
         //On this decoded token, we will find the Id because we used the userId to create this token
         if(tokenDecode.id){
