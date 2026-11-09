@@ -24,4 +24,3 @@ export const getUserData = async (req, res) => {
     }
 }
 
-//The end 
