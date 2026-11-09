@@ -145,7 +145,7 @@ export const sendVerifyOtp = async (req, res) => {
     }
 };
 
-//Now create a function for the user to enter the otp sent on their email
+//Then create a function for the user to enter the otp sent on their email
 export const verifyEmail = async (req, res) => {
     const userId = req.userId;
     const {otp} = req.body || {};
